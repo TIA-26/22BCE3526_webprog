@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+   }
+   
+   #feedback_form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 2rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: lightpink; /* Grey background */
+    margin: 0 auto; /* Center the form horizontally */
+    max-width: 800px; /* Set a maximum width for the form */
+   }
+   
+   .form-check {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+   }
+   
+   .form-check-input {
+    cursor: pointer;
+   }
+   
+   .form-control {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+   }
+   
+   .btn-success {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+   }
+   
+   .btn-success:hover {
+    background-color: #45a049;
+   }
+   footer {
+    
+    padding: 20px 0;
+    text-align: center;
+   }

@@ -1,0 +1,123 @@
+html, body, .container {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    border: none;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+.header {
+    width: 100%;
+    display:flex;
+    margin:auto;
+    padding:15px 0;
+    align-items:center;
+    justify-content:space-between;
+    background-color:rgb(189, 41, 100);
+   }
+   .header .logo{
+    width:110px;
+    cursor:pointer;
+    margin-top:1%;
+    margin-left:2%;
+  }
+  ul{
+    margin-top:1%;
+  }
+  ul li{
+    list-style:none;
+    display:inline-block;
+    padding:10px 16px;
+  }
+  ul li a{
+    font-size:px;
+    font-style:italic;
+    font-family:cursive;
+    text-decoration:none;
+    color:#474F7A;
+    margin-top:1%;
+    transition:.4s ease;
+  }
+  ul li a:hover{
+    color:#81689D;
+  }
+  .content {
+    flex-grow: 1;
+    display: flex;
+  }
+  .main {
+    flex-grow: 1;
+    overflow: auto;
+    background:url(pink.jpeg);
+    background-position:center;
+    background-size:cover;
+    position:relative;
+    font-family:cursive;
+    font-size: 20px;
+    padding:10px;
+    
+    
+  }
+  div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+    }
+    div.gallery:hover {
+    border: 1px solid #777;
+    }
+    div.gallery img {
+    width: 100%;
+    height: auto;
+    }
+    div.desc {
+    padding: 15px;
+    text-align: center;
+    }
+    main.row{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 20px;
+    }
+    .col header.title{
+        font-family: Arial, Helvetica, sans-serif;
+        color:#ca0c48;
+    }
+     .col .contents{
+        padding:0px 30px;
+        border-left:2px solid #bababa;
+     }
+     .col .contents .box{
+        position: relative;
+        padding: 20px;
+        border: 1px solid #eaeaea;
+        background-color:rgb(94, 191, 212);
+        cursor: pointer;
+        transition: all 0.4s;
+        margin-bottom: 20px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #eed9c4;
+    
+     }
+     .col .contents .box:hover{
+        box-shadow: 0px 30px 400px 0px #81689D;
+        border:1px solid transparent;
+     }
+     .timeline{
+        background:url("pink.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        
+     }
+     .medal img{
+        margin-left:50%;
+        position:relative;
+        margin-top:1.5%;
+        width:45%;
+        height:20%;
+
+     }
+     
