@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Generator</title>
+<style>
+   body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #81aae3, #735b93);
+        margin:  0;
+        padding:  0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height:  100vh;
+    }
+
+    form {
+        max-width:  600px;
+        margin:  0 auto;
+        background-color: #fff;
+        padding:  30px;
+        border-radius:  10px;
+        box-shadow:  0  0  10px rgba(0,  0,  0,  0.1);
+        width:  100%;
+    }
+
+
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
+        width:  100%;
+        padding:  10px;
+        margin:  5px  0;
+        border:  1px solid #c39a9a;
+        border-radius:  5px;
+        box-sizing: border-box;
+        overflow-x:scroll;
+    }
+
+    input[type="submit"] {
+        background-color: #b493e0;
+        color: #fff;
+        padding:  10px  20px;
+        border: none;
+        border-radius:  4px;
+        cursor: pointer;
+        float: right;
+        transition: background-color  0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #52a0ca;
+    }
+
+    .resume {
+        display: none;
+        max-width:  600px;
+        margin:  20px auto;
+        padding:  20px;
+        border:  1px solid #59575e;
+        border-radius:  10px;
+        margin-top:  4%;
+        background-color: #f0c6c6;
+    }
+
+    .headings {
+        color: #F1FADA;
+        font-family: 'Courier New', Courier, monospace;
+        text-align: center;
+        font-size:  2.5em;
+        margin-bottom:  20px;
+    }
+
+    .question-container {
+        margin-bottom:  20px;
+        background-color:rgb(163, 150, 214);
+    }
+
+    .question {
+        font-weight: bold;
+        font-size:  1.1em;
+    }
+
+    .form-group {
+        margin-bottom:  15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom:  5px;
+    }
+
+    .form-group select {
+        margin-top:  5px;
+    }
+
+    .form-group textarea {
+        resize: vertical;
+    }
+
+    @media (max-width:  600px) {
+        form {
+            padding:  20px;
+        }
+
+        .headings {
+            font-size:  2em;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="headings">
+        <h1>Resume Generator</h1>
+        <hr>
+    </div>
+    <form id="resumeForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" pattern="[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" pattern="[0-9]{10}" required>
+        </div>
+        <div class="form-group">
+            <label for="bio">Short Bio:</label>
+            <textarea id="bio" name="bio" rows="4" required></textarea>
+        </div>
+        <h2>MBTI Quiz</h2>
+        <div class="question-container">
+            <label for="question1">1. I prefer to:</label>
+            <select id="question1" name="question1" required>
+                <option value="E">Socialize with others</option>
+                <option value="I">Spend time alone</option>
+            </select>
+        </div>
+        <div class="question-container">
+            <label for="question2">2. I tend to:</label>
+            <select id="question2" name="question2" required>
+                <option value="S">Focus on details</option>
+                <option value="N">Focus on the big picture</option>
+            </select>
+        </div>
+        <div class="question-container">
+            <label for="question3">3. I make decisions based on:</label>
+            <select id="question3" name="question3" required>
+                <option value="T">Logic and facts</option>
+                <option value="F">Feelings and values</option>
+            </select>
+        </div>
+        <div class="question-container">
+            <label for="question4">4. I prefer to:</label>
+            <select id="question4" name="question4" required>
+                <option value="J">Plan and organize</option>
+                <option value="P">Go with the flow</option>
+            </select>
+        </div>
+        <div class="question-container">
+            <label for="question5">5. I am more:</label>
+            <select id="question5" name="question5" required>
+                <option value="A">Adaptable</option>
+                <option value="S">Structured</option>
+            </select>
+        </div>
+        <input type="submit" value="Generate Resume">
+    </form>
+
+    <div id="generatedResume" class="resume">
+        <h2 style="font-family: cursive;">Generated Resume</h2>
+        <p><strong>Name:</strong> <span id="resumeName"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="resumeDOB"></span></p>
+        <p><strong>Email:</strong> <span id="resumeEmail"></span></p>
+        <p><strong>Phone Number:</strong> <span id="resumePhone"></span></p>
+        <p><strong>Age:</strong> <span id="resumeAge"></span></p>
+        <p><strong>Short Bio:</strong></p>
+        <p id="resumeBio"></p>
+        <p><strong>MBTI Personality:</strong> <span id="resumeMBTI"></span></p>
+        <p><strong>MBTI Personality Description:</strong> <span id="resumeMBTIDescription"></span></p>
+        <p><strong>Desirable Jobs:</strong> <span id="resumeJobs"></span></p>
+    </div>
+
+    <script>
+        document.getElementById("resumeForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            generateResume();
+        });
+
+        function generateResume() {
+            var name = document.getElementById("name").value;
+            var dob = new Date(document.getElementById("dob").value);
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var bio = document.getElementById("bio").value;
+
+            var age = calculateAge(dob);
+
+            document.getElementById("resumeName").textContent = name;
+            document.getElementById("resumeDOB").textContent = dob.toDateString();
+            document.getElementById("resumeEmail").textContent = email;
+            document.getElementById("resumePhone").textContent = phone;
+            document.getElementById("resumeAge").textContent = age;
+            document.getElementById("resumeBio").textContent = bio;
+
+            var mbtiResult = calculateMBTIResult();
+            document.getElementById("resumeMBTI").textContent =  mbtiResult;
+
+            var mbtiDescription = generateMBTIDescription(mbtiResult);
+            document.getElementById("resumeMBTIDescription").textContent =  mbtiDescription;
+
+            var desirableJobs = getDesirableJobs(mbtiResult);
+            document.getElementById("resumeJobs").textContent = desirableJobs;
+
+            document.getElementById("generatedResume").style.display = "block";
+        }
+
+        function calculateAge(birthDate) {
+            var today = new Date();
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m <  0 || (m ===  0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        }
+
+        function calculateMBTIResult() {
+            var answer1 = document.getElementById("question1").value;
+            var answer2 = document.getElementById("question2").value;
+            var answer3 = document.getElementById("question3").value;
+            var answer4 = document.getElementById("question4").value;
+            var answer5 = document.getElementById("question5").value;
+
+            return answer1 + answer2 + answer3 + answer4;
+        }
+
+        function generateMBTIDescription(mbtiResult) {
+            var descriptions = {
+                "ESFJ": "Supportive and outgoing, values harmony and enjoys helping others.",
+                "ESFP": "Energetic and spontaneous, loves living in the moment and being social.",
+                "ESTJ": "Practical and organized, follows traditions and values order.",
+                "ESTP": "Bold and action-oriented, enjoys taking risks and being in the moment.",
+                "ENFJ": "Charismatic and compassionate, values relationships and personal growth.",
+                "ENFP": "Creative and enthusiastic, loves exploring possibilities and ideas.",
+                "ENTJ": "Strategic and assertive, enjoys leading and achieving goals.",
+                "ENTP": "Innovative and curious, values exploring new ideas and possibilities.",
+                "ISFJ": "Caring and responsible, values tradition and enjoys helping others.",
+                "ISFP": "Artistic and sensitive, values individuality and creative expression.",
+                "ISTJ": "Detail-oriented and organized, follows a systematic and responsible approach.",
+                "ISTP": "Analytical and adventurous, enjoys exploring and solving practical problems.",
+                "INFJ": "Insightful and compassionate, values authenticity and deeper connections.",
+                "INFP": "Idealistic and creative, loves exploring personal values and possibilities.",
+                "INTJ": "Strategic and analytical, enjoys solving complex problems and achieving goals.",
+                "INTP": "Logical and independent, values exploration and theoretical understanding."
+            };
+
+            return descriptions[mbtiResult] || "No description available.";
+        }
+
+        function getDesirableJobs(mbtiResult) {
+            var jobSuggestions = {
+                "ESFJ": "Teacher, Nurse, Social Worker",
+                "ESFP": "Entertainer, Sales Representative, Event Planner",
+                "ESTJ": "Administrator, Manager, Police Officer",
+                "ESTP": "Entrepreneur, Pilot, Athlete",
+                "ENFJ": "Counselor, Teacher, Human Resources Specialist",
+                "ENFP": "Writer, Actor, Counselor",
+                "ENTJ": "CEO, Lawyer, Politician",
+                "ENTP": "Innovator, Scientist, Consultant",
+                "ISFJ": "Librarian, Nurse, Child Care Worker",
+                "ISFP": "Artist, Musician, Graphic Designer",
+                "ISTJ": "Accountant, Engineer, Project Manager",
+                "ISTP": "Mechanic, Forester, Detective",
+                "INFJ": "Psychologist, Writer, Artist",
+                "INFP": "Social Worker, Counselor, Writer",
+                "INTJ": "Scientist, Architect, Professor",
+                "INTP": "Researcher, IT Specialist, Scientist"
+            };
+
+            return jobSuggestions[mbtiResult] || "No specific job suggestions available.";
+        }
+    </script>
+</body>
+</html>
+
+
